@@ -8,6 +8,12 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     environment: str = "development"
     api_v1_prefix: str = "/api/v1"
+
+    database_url: str = (
+        "postgresql+psycopg://"
+        "gridguard:gridguard_dev_password@localhost:5432/gridguard"
+    )
+
     cors_origins: list[str] = ["http://localhost:3000"]
 
     model_config = SettingsConfigDict(

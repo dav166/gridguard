@@ -305,7 +305,7 @@ uv run ruff check .
 * [x] Create the FastAPI application
 * [x] Connect the frontend to the API
 * [x] Add automated health checks
-* [ ] Add PostgreSQL through Docker Compose
+* [x] Add PostgreSQL through Docker Compose
 * [ ] Add continuous integration
 
 ### Milestone 2: Identity and Tenancy

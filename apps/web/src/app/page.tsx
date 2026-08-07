@@ -1,8 +1,9 @@
 type HealthResponse = {
-  status: "ok";
+  status: "ok" | "degraded";
   service: string;
   environment: string;
   version: string;
+  database: "connected" | "unavailable";
 };
 
 type ApiConnection = {
@@ -71,16 +72,22 @@ async function getApiConnection(): Promise<ApiConnection> {
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      throw new Error(`Health endpoint returned ${response.status}`);
-    }
-
     const health: HealthResponse = await response.json();
 
+    if (!response.ok || health.status !== "ok") {
+      return {
+        connected: false,
+        heading: "Database unavailable",
+        detail: `${health.service} · PostgreSQL ${health.database}`,
+      };
+    }
+
     return {
-      connected: health.status === "ok",
-      heading: "API connected",
-      detail: `${health.service} · ${health.environment} · v${health.version}`,
+      connected: true,
+      heading: "API and database connected",
+      detail:
+        `${health.service} · PostgreSQL ${health.database} · ` +
+        `${health.environment} · v${health.version}`,
     };
   } catch {
     return {
