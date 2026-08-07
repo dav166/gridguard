@@ -91,8 +91,17 @@ async function getApiConnection(): Promise<ApiConnection> {
   }
 }
 
+function getCurrentDate(): string {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  }).format(new Date());
+}
+
 export default async function Home() {
   const apiConnection = await getApiConnection();
+  const currentDate = getCurrentDate();
 
   return (
     <main className="app-shell">
@@ -165,7 +174,7 @@ export default async function Home() {
       <section className="workspace" id="dashboard">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Monday, August 3</p>
+            <p className="eyebrow">{currentDate}</p>
             <h1>Good afternoon, David.</h1>
           </div>
 

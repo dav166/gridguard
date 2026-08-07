@@ -301,10 +301,10 @@ uv run ruff check .
 
 ### Milestone 1: Foundation
 
-* [ ] Create the Next.js application
-* [ ] Create the FastAPI application
-* [ ] Connect the frontend to the API
-* [ ] Add automated health checks
+* [x] Create the Next.js application
+* [x] Create the FastAPI application
+* [x] Connect the frontend to the API
+* [x] Add automated health checks
 * [ ] Add PostgreSQL through Docker Compose
 * [ ] Add continuous integration
 
