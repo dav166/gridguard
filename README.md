@@ -306,7 +306,7 @@ uv run ruff check .
 * [x] Connect the frontend to the API
 * [x] Add automated health checks
 * [x] Add PostgreSQL through Docker Compose
-* [ ] Add continuous integration
+* [x] Add continuous integration
 
 ### Milestone 2: Identity and Tenancy
 

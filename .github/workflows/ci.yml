@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api:
+    name: API quality
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/api
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: apps/api/uv.lock
+
+      - name: Install API dependencies
+        run: uv sync --locked
+
+      - name: Run Ruff
+        run: uv run ruff check .
+
+      - name: Run API tests
+        run: uv run pytest
+
+  web:
+    name: Web quality
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/web
+
+    env:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install web dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Build web application
+        run: npm run build
