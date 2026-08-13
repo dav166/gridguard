@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Response, status
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import Session
 
+from app.api.dependencies import DatabaseSession
 from app.core.config import settings
-from app.db.session import get_db
 from app.schemas.health import HealthResponse
 
 router = APIRouter(tags=["health"])
@@ -17,7 +16,7 @@ router = APIRouter(tags=["health"])
 )
 def health_check(
     response: Response,
-    db: Session = Depends(get_db),
+    db: DatabaseSession,
 ) -> HealthResponse:
     try:
         db.execute(text("SELECT 1"))
