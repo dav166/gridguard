@@ -25,9 +25,7 @@ def test_verify_password_accepts_correct_password() -> None:
 
 
 def test_verify_password_rejects_wrong_password() -> None:
-    hashed_password = hash_password(
-        "correct-horse-battery-staple"
-    )
+    hashed_password = hash_password("correct-horse-battery-staple")
 
     assert not verify_password(
         "wrong-password",

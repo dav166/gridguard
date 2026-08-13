@@ -34,9 +34,7 @@ def get_organization_by_slug(
     db: Session,
     slug: str,
 ) -> Organization | None:
-    statement = select(Organization).where(
-        Organization.slug == slug
-    )
+    statement = select(Organization).where(Organization.slug == slug)
 
     return db.scalar(statement)
 
@@ -44,8 +42,6 @@ def get_organization_by_slug(
 def list_organizations(
     db: Session,
 ) -> list[Organization]:
-    statement = select(Organization).order_by(
-        Organization.created_at.desc()
-    )
+    statement = select(Organization).order_by(Organization.created_at.desc())
 
     return list(db.scalars(statement).all())

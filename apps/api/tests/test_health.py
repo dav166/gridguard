@@ -14,9 +14,7 @@ def create_client(*, database_available: bool = True) -> TestClient:
     database_session = Mock(spec=Session)
 
     if not database_available:
-        database_session.execute.side_effect = SQLAlchemyError(
-            "Database unavailable"
-        )
+        database_session.execute.side_effect = SQLAlchemyError("Database unavailable")
 
     def override_get_db() -> Generator[Session, None, None]:
         yield database_session

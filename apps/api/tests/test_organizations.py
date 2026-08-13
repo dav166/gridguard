@@ -79,9 +79,7 @@ def test_get_organization(
 
     organization_id = create_response.json()["id"]
 
-    response = client.get(
-        f"/api/v1/organizations/{organization_id}"
-    )
+    response = client.get(f"/api/v1/organizations/{organization_id}")
 
     assert response.status_code == 200
     assert response.json()["id"] == organization_id
@@ -118,10 +116,7 @@ def test_list_organizations(
 
     assert len(organizations) == 2
 
-    slugs = {
-        organization["slug"]
-        for organization in organizations
-    }
+    slugs = {organization["slug"] for organization in organizations}
 
     assert slugs == {
         "northstar-renewables",
@@ -150,9 +145,7 @@ def test_duplicate_organization_slug_returns_conflict(
     assert first_response.status_code == 201
     assert second_response.status_code == 409
 
-    assert second_response.json() == {
-        "detail": "An organization with this slug already exists."
-    }
+    assert second_response.json() == {"detail": "An organization with this slug already exists."}
 
 
 def test_invalid_organization_slug_is_rejected(
@@ -187,13 +180,8 @@ def test_organization_name_is_trimmed(
 def test_missing_organization_returns_not_found(
     client: TestClient,
 ) -> None:
-    response = client.get(
-        "/api/v1/organizations/"
-        "00000000-0000-0000-0000-000000000000"
-    )
+    response = client.get("/api/v1/organizations/00000000-0000-0000-0000-000000000000")
 
     assert response.status_code == 404
 
-    assert response.json() == {
-        "detail": "Organization not found."
-    }
+    assert response.json() == {"detail": "Organization not found."}

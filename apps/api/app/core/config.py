@@ -10,8 +10,7 @@ class Settings(BaseSettings):
     api_v1_prefix: str = "/api/v1"
 
     database_url: str = (
-        "postgresql+psycopg://"
-        "gridguard:gridguard_dev_password@localhost:5432/gridguard"
+        "postgresql+psycopg://gridguard:gridguard_dev_password@localhost:5432/gridguard"
     )
 
     cors_origins: list[str] = ["http://localhost:3000"]

@@ -15,9 +15,7 @@ def create_user(
     user = User(
         email=str(user_data.email),
         full_name=user_data.full_name,
-        password_hash=hash_password(
-            user_data.password
-        ),
+        password_hash=hash_password(user_data.password),
     )
 
     db.add(user)
@@ -40,8 +38,6 @@ def get_user_by_email(
 ) -> User | None:
     normalized_email = email.strip().lower()
 
-    statement = select(User).where(
-        User.email == normalized_email
-    )
+    statement = select(User).where(User.email == normalized_email)
 
     return db.scalar(statement)

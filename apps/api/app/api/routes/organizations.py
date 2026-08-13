@@ -68,10 +68,7 @@ def list_organizations_endpoint(
 ) -> list[OrganizationResponse]:
     organizations = list_organizations(db)
 
-    return [
-        OrganizationResponse.model_validate(organization)
-        for organization in organizations
-    ]
+    return [OrganizationResponse.model_validate(organization) for organization in organizations]
 
 
 @router.get(

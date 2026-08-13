@@ -10,8 +10,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         version=settings.app_version,
         description=(
-            "Safety and compliance management API for renewable-energy "
-            "construction teams."
+            "Safety and compliance management API for renewable-energy construction teams."
         ),
     )
 
