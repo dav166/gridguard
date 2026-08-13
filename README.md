@@ -312,7 +312,7 @@ uv run ruff check .
 
 * [ ] Add user accounts
 * [ ] Add secure sessions
-* [ ] Add organizations
+* [x] Add organizations
 * [ ] Add memberships
 * [ ] Add invitations
 * [ ] Add role-based authorization
