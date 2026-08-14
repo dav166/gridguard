@@ -313,10 +313,10 @@ uv run ruff check .
 * [x] Add user accounts
 * [x] Add secure sessions
 * [x] Add organizations
-* [ ] Add memberships
+* [x] Add memberships
 * [ ] Add invitations
-* [ ] Add role-based authorization
-* [ ] Test tenant isolation
+* [x] Add role-based authorization
+* [x] Test tenant isolation
 
 ### Milestone 3: Project Safety Workflow
 
