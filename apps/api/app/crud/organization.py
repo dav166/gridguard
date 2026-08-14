@@ -3,6 +3,7 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.models.membership import OrganizationMembership
 from app.models.organization import Organization
 from app.schemas.organization import OrganizationCreate
 
@@ -17,8 +18,7 @@ def create_organization(
     )
 
     db.add(organization)
-    db.commit()
-    db.refresh(organization)
+    db.flush()
 
     return organization
 
@@ -27,7 +27,10 @@ def get_organization(
     db: Session,
     organization_id: UUID,
 ) -> Organization | None:
-    return db.get(Organization, organization_id)
+    return db.get(
+        Organization,
+        organization_id,
+    )
 
 
 def get_organization_by_slug(
@@ -39,9 +42,18 @@ def get_organization_by_slug(
     return db.scalar(statement)
 
 
-def list_organizations(
+def list_user_organizations(
     db: Session,
+    user_id: UUID,
 ) -> list[Organization]:
-    statement = select(Organization).order_by(Organization.created_at.desc())
+    statement = (
+        select(Organization)
+        .join(
+            OrganizationMembership,
+            OrganizationMembership.organization_id == Organization.id,
+        )
+        .where(OrganizationMembership.user_id == user_id)
+        .order_by(Organization.created_at.desc())
+    )
 
     return list(db.scalars(statement).all())

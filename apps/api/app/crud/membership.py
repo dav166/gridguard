@@ -21,8 +21,7 @@ def create_membership(
     )
 
     db.add(membership)
-    db.commit()
-    db.refresh(membership)
+    db.flush()
 
     return membership
 
