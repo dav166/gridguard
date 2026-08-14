@@ -310,8 +310,8 @@ uv run ruff check .
 
 ### Milestone 2: Identity and Tenancy
 
-* [ ] Add user accounts
-* [ ] Add secure sessions
+* [x] Add user accounts
+* [x] Add secure sessions
 * [x] Add organizations
 * [ ] Add memberships
 * [ ] Add invitations
