@@ -42,9 +42,7 @@ def delete_user_session_by_token_hash(
     db: Session,
     token_hash: str,
 ) -> None:
-    statement = delete(UserSession).where(
-        UserSession.token_hash == token_hash
-    )
+    statement = delete(UserSession).where(UserSession.token_hash == token_hash)
 
     db.execute(statement)
     db.commit()

@@ -25,6 +25,4 @@ def generate_session_token() -> str:
 
 
 def hash_session_token(token: str) -> str:
-    return sha256(
-        token.encode("utf-8")
-    ).hexdigest()
+    return sha256(token.encode("utf-8")).hexdigest()
