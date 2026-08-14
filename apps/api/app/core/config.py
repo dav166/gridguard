@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     environment: str = "development"
     api_v1_prefix: str = "/api/v1"
 
+    session_cookie_name: str = "gridguard_session"
+    session_ttl_days: int = 7
+    cookie_secure: bool = False
+
     database_url: str = (
         "postgresql+psycopg://gridguard:gridguard_dev_password@localhost:5432/gridguard"
     )

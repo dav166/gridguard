@@ -1,3 +1,6 @@
+from hashlib import sha256
+from secrets import token_urlsafe
+
 from pwdlib import PasswordHash
 
 password_hash = PasswordHash.recommended()
@@ -15,3 +18,13 @@ def verify_password(
         plain_password,
         hashed_password,
     )
+
+
+def generate_session_token() -> str:
+    return token_urlsafe(32)
+
+
+def hash_session_token(token: str) -> str:
+    return sha256(
+        token.encode("utf-8")
+    ).hexdigest()
