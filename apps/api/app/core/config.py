@@ -33,3 +33,5 @@ def get_settings() -> Settings:
 
 
 settings = get_settings()
+
+invitation_ttl_days: int = 7
