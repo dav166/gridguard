@@ -321,7 +321,7 @@ uv run ruff check .
 ### Milestone 3: Project Safety Workflow
 
 * [x] Add projects
-* [ ] Add inspections
+* [x] Add inspections
 * [ ] Add safety observations
 * [ ] Add corrective actions
 * [ ] Add evidence attachments
