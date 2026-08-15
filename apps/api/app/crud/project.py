@@ -53,18 +53,11 @@ def list_projects(
 ) -> list[Project]:
     statement = (
         select(Project)
-        .where(
-            Project.organization_id
-            == organization_id
-        )
-        .order_by(
-            Project.created_at.desc()
-        )
+        .where(Project.organization_id == organization_id)
+        .order_by(Project.created_at.desc())
     )
 
-    return list(
-        db.scalars(statement).all()
-    )
+    return list(db.scalars(statement).all())
 
 
 def update_project(
@@ -72,9 +65,7 @@ def update_project(
     project: Project,
     project_data: ProjectUpdate,
 ) -> Project:
-    updates = project_data.model_dump(
-        exclude_unset=True
-    )
+    updates = project_data.model_dump(exclude_unset=True)
 
     for field, value in updates.items():
         setattr(

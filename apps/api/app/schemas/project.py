@@ -63,9 +63,7 @@ class ProjectCreate(BaseModel):
             and self.end_date is not None
             and self.end_date < self.start_date
         ):
-            raise ValueError(
-                "end_date must be on or after start_date"
-            )
+            raise ValueError("end_date must be on or after start_date")
 
         return self
 

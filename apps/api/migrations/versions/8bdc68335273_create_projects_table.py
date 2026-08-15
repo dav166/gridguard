@@ -47,15 +47,24 @@ def upgrade() -> None:
             nullable=False,
         ),
         sa.CheckConstraint(
-            "project_type IN ('solar', 'wind', 'battery_storage', 'transmission', 'substation', 'other')",
+            (
+                "project_type IN ("
+                "'solar', "
+                "'wind', "
+                "'battery_storage', "
+                "'transmission', "
+                "'substation', "
+                "'other'"
+                ")"
+            ),
             name="ck_projects_project_type",
         ),
         sa.CheckConstraint(
-            "status IN ('planned', 'active', 'on_hold', 'completed', 'archived')",
+            ("status IN ('planned', 'active', 'on_hold', 'completed', 'archived')"),
             name="ck_projects_status",
         ),
         sa.CheckConstraint(
-            "end_date IS NULL OR start_date IS NULL OR end_date >= start_date",
+            ("end_date IS NULL OR start_date IS NULL OR end_date >= start_date"),
             name="ck_projects_date_range",
         ),
         sa.ForeignKeyConstraint(["created_by_user_id"], ["users.id"], ondelete="SET NULL"),

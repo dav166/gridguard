@@ -114,3 +114,28 @@ OrganizationAdminMembership = Annotated[
     OrganizationMembership,
     Depends(require_organization_admin),
 ]
+
+
+PROJECT_WRITE_ROLES = {
+    OrganizationRole.ORGANIZATION_ADMIN.value,
+    OrganizationRole.SAFETY_MANAGER.value,
+    OrganizationRole.SUPERVISOR.value,
+}
+
+
+def require_project_write_access(
+    membership: CurrentOrganizationMembership,
+) -> OrganizationMembership:
+    if membership.role not in PROJECT_WRITE_ROLES:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=("Project management permission required."),
+        )
+
+    return membership
+
+
+ProjectWriteMembership = Annotated[
+    OrganizationMembership,
+    Depends(require_project_write_access),
+]

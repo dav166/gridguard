@@ -57,23 +57,11 @@ class Project(Base):
             name="ck_projects_project_type",
         ),
         CheckConstraint(
-            (
-                "status IN ("
-                "'planned', "
-                "'active', "
-                "'on_hold', "
-                "'completed', "
-                "'archived'"
-                ")"
-            ),
+            ("status IN ('planned', 'active', 'on_hold', 'completed', 'archived')"),
             name="ck_projects_status",
         ),
         CheckConstraint(
-            (
-                "end_date IS NULL "
-                "OR start_date IS NULL "
-                "OR end_date >= start_date"
-            ),
+            ("end_date IS NULL OR start_date IS NULL OR end_date >= start_date"),
             name="ck_projects_date_range",
         ),
     )
