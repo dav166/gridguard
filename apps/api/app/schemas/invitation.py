@@ -51,7 +51,5 @@ class InvitationResponse(BaseModel):
     created_at: datetime
 
 
-class InvitationCreatedResponse(
-    InvitationResponse
-):
+class InvitationCreatedResponse(InvitationResponse):
     token: str

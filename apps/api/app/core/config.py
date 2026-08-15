@@ -11,6 +11,7 @@ class Settings(BaseSettings):
 
     session_cookie_name: str = "gridguard_session"
     session_ttl_days: int = 7
+    invitation_ttl_days: int = 7
     cookie_secure: bool = False
 
     database_url: str = (
@@ -33,5 +34,3 @@ def get_settings() -> Settings:
 
 
 settings = get_settings()
-
-invitation_ttl_days: int = 7

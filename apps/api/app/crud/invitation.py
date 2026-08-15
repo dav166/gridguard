@@ -38,11 +38,8 @@ def get_pending_invitation_by_email(
     organization_id: UUID,
     email: str,
 ) -> OrganizationInvitation | None:
-    statement = select(
-        OrganizationInvitation
-    ).where(
-        OrganizationInvitation.organization_id
-        == organization_id,
+    statement = select(OrganizationInvitation).where(
+        OrganizationInvitation.organization_id == organization_id,
         OrganizationInvitation.email == email,
         OrganizationInvitation.accepted_at.is_(None),
         OrganizationInvitation.expires_at > func.now(),
@@ -55,11 +52,8 @@ def get_active_invitation_by_token_hash(
     db: Session,
     token_hash: str,
 ) -> OrganizationInvitation | None:
-    statement = select(
-        OrganizationInvitation
-    ).where(
-        OrganizationInvitation.token_hash
-        == token_hash,
+    statement = select(OrganizationInvitation).where(
+        OrganizationInvitation.token_hash == token_hash,
         OrganizationInvitation.accepted_at.is_(None),
         OrganizationInvitation.expires_at > func.now(),
     )
@@ -74,22 +68,14 @@ def list_pending_invitations(
     statement = (
         select(OrganizationInvitation)
         .where(
-            OrganizationInvitation.organization_id
-            == organization_id,
-            OrganizationInvitation.accepted_at.is_(
-                None
-            ),
-            OrganizationInvitation.expires_at
-            > func.now(),
+            OrganizationInvitation.organization_id == organization_id,
+            OrganizationInvitation.accepted_at.is_(None),
+            OrganizationInvitation.expires_at > func.now(),
         )
-        .order_by(
-            OrganizationInvitation.created_at.desc()
-        )
+        .order_by(OrganizationInvitation.created_at.desc())
     )
 
-    return list(
-        db.scalars(statement).all()
-    )
+    return list(db.scalars(statement).all())
 
 
 def mark_invitation_accepted(

@@ -25,9 +25,7 @@ def _generate_secure_token() -> str:
 
 
 def _hash_secure_token(token: str) -> str:
-    return sha256(
-        token.encode("utf-8")
-    ).hexdigest()
+    return sha256(token.encode("utf-8")).hexdigest()
 
 
 def generate_session_token() -> str:

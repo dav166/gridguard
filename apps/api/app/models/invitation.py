@@ -19,14 +19,7 @@ class OrganizationInvitation(Base):
 
     __table_args__ = (
         CheckConstraint(
-            (
-                "role IN ("
-                "'organization_admin', "
-                "'safety_manager', "
-                "'supervisor', "
-                "'worker'"
-                ")"
-            ),
+            ("role IN ('organization_admin', 'safety_manager', 'supervisor', 'worker')"),
             name="ck_organization_invitations_role",
         ),
     )
