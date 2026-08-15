@@ -314,7 +314,7 @@ uv run ruff check .
 * [x] Add secure sessions
 * [x] Add organizations
 * [x] Add memberships
-* [ ] Add invitations
+* [x] Add invitations
 * [x] Add role-based authorization
 * [x] Test tenant isolation
 
