@@ -2,6 +2,9 @@ from fastapi import APIRouter
 
 from app.api.routes.auth import router as auth_router
 from app.api.routes.health import router as health_router
+from app.api.routes.inspections import (
+    router as inspections_router,
+)
 from app.api.routes.invitations import (
     router as invitations_router,
 )
@@ -21,3 +24,4 @@ api_router.include_router(organizations_router)
 api_router.include_router(memberships_router)
 api_router.include_router(invitations_router)
 api_router.include_router(projects_router)
+api_router.include_router(inspections_router)
