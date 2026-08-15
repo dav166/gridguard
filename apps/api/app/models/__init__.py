@@ -1,3 +1,9 @@
+from app.models.inspection import (
+    Inspection,
+    InspectionResult,
+    InspectionStatus,
+    InspectionType,
+)
 from app.models.invitation import OrganizationInvitation
 from app.models.membership import (
     OrganizationMembership,
@@ -22,4 +28,8 @@ __all__ = [
     "ProjectType",
     "User",
     "UserSession",
+    "Inspection",
+    "InspectionResult",
+    "InspectionStatus",
+    "InspectionType",
 ]
