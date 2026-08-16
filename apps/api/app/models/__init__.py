@@ -9,6 +9,12 @@ from app.models.membership import (
     OrganizationMembership,
     OrganizationRole,
 )
+from app.models.observation import (
+    ObservationCategory,
+    ObservationKind,
+    ObservationSeverity,
+    SafetyObservation,
+)
 from app.models.organization import Organization
 from app.models.project import (
     Project,
@@ -32,4 +38,8 @@ __all__ = [
     "InspectionResult",
     "InspectionStatus",
     "InspectionType",
+    "ObservationCategory",
+    "ObservationKind",
+    "ObservationSeverity",
+    "SafetyObservation",
 ]

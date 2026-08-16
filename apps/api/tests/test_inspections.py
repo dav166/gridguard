@@ -389,12 +389,10 @@ def test_inspection_lookup_is_tenant_scoped(
     )
 
     response = client.get(
-        
-            f"/api/v1/organizations/"
-            f"{second_organization['id']}/projects/"
-            f"{second_project['id']}/inspections/"
-            f"{inspection['id']}"
-        
+        f"/api/v1/organizations/"
+        f"{second_organization['id']}/projects/"
+        f"{second_project['id']}/inspections/"
+        f"{inspection['id']}"
     )
 
     assert response.status_code == 404
