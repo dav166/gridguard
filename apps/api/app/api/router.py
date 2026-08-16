@@ -11,6 +11,9 @@ from app.api.routes.invitations import (
 from app.api.routes.memberships import (
     router as memberships_router,
 )
+from app.api.routes.observations import (
+    router as observations_router,
+)
 from app.api.routes.organizations import (
     router as organizations_router,
 )
@@ -25,3 +28,4 @@ api_router.include_router(memberships_router)
 api_router.include_router(invitations_router)
 api_router.include_router(projects_router)
 api_router.include_router(inspections_router)
+api_router.include_router(observations_router)
