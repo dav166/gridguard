@@ -322,7 +322,7 @@ uv run ruff check .
 
 * [x] Add projects
 * [x] Add inspections
-* [ ] Add safety observations
+* [x] Add safety observations
 * [ ] Add corrective actions
 * [ ] Add evidence attachments
 * [ ] Add audit events
