@@ -1,3 +1,8 @@
+from app.models.corrective_action import (
+    CorrectiveAction,
+    CorrectiveActionPriority,
+    CorrectiveActionStatus,
+)
 from app.models.inspection import (
     Inspection,
     InspectionResult,
@@ -42,4 +47,7 @@ __all__ = [
     "ObservationKind",
     "ObservationSeverity",
     "SafetyObservation",
+    "CorrectiveAction",
+    "CorrectiveActionPriority",
+    "CorrectiveActionStatus",
 ]

@@ -535,15 +535,13 @@ def test_observation_lookup_is_tenant_scoped(
     )
 
     response = client.get(
-        
-            f"{
-                observation_endpoint(
-                    second_organization['id'],
-                    second_project['id'],
-                    second_inspection['id'],
-                )
-            }/{observation['id']}"
-        
+        f"{
+            observation_endpoint(
+                second_organization['id'],
+                second_project['id'],
+                second_inspection['id'],
+            )
+        }/{observation['id']}"
     )
 
     assert response.status_code == 404

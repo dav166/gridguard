@@ -108,3 +108,18 @@ def update_observation(
     db.flush()
 
     return observation
+
+
+def get_project_observation(
+    db: Session,
+    organization_id: UUID,
+    project_id: UUID,
+    observation_id: UUID,
+) -> SafetyObservation | None:
+    statement = select(SafetyObservation).where(
+        SafetyObservation.id == observation_id,
+        SafetyObservation.organization_id == organization_id,
+        SafetyObservation.project_id == project_id,
+    )
+
+    return db.scalar(statement)
